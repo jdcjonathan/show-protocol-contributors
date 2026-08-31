@@ -1,0 +1,520 @@
+{
+  "version": "1.1.0",
+  "description": "Atomic-first skill taxonomy for SHOW GTM. Agents: filter skill_level=primitive for launch bounties.",
+  "gtm_active_sprint": "gtm-sprint-1",
+  "skill_levels": {
+    "primitive": {
+      "duration_sec_max": 20,
+      "default_tier": "A",
+      "bounty_usdc_typical": [8, 22],
+      "gtm_priority": 1
+    },
+    "micro": {
+      "duration_sec_max": 60,
+      "composed_of": "2-4 primitives",
+      "gtm_priority": 2
+    },
+    "composite": {
+      "duration_sec_max": 600,
+      "composed_of": "primitives + micros",
+      "gtm_priority": 3,
+      "bounty_active": false
+    }
+  },
+  "sprints": {
+    "gtm-sprint-1": {
+      "days": "4-10",
+      "goal_clips": 50,
+      "goal_first_license_day": 10
+    },
+    "gtm-sprint-2": {
+      "days": "11-17",
+      "goal_clips": 40,
+      "goal_micro_stack_demo": true
+    },
+    "gtm-sprint-3": {
+      "days": "18-24",
+      "goal_task_escrow_settles": 2
+    }
+  },
+  "primitives": [
+    {
+      "skill_id": "reach.object.above-surface.v1",
+      "verb": "reach",
+      "duration_sec": { "min": 5, "max": 10 },
+      "primary_angles": ["egocentric_chest", "top_down"],
+      "props": ["any graspable object on table"],
+      "bounty_usdc": 8,
+      "sprint": "gtm-sprint-1",
+      "slots": 10,
+      "composes_into": ["micro.pick-place.v1", "pour-over.coffee.v1"]
+    },
+    {
+      "skill_id": "grasp.object.power.v1",
+      "verb": "grasp",
+      "duration_sec": { "min": 5, "max": 12 },
+      "primary_angles": ["egocentric_chest", "top_down"],
+      "props": ["cup", "box", "bottle"],
+      "bounty_usdc": 10,
+      "sprint": "gtm-sprint-1",
+      "slots": 10,
+      "composes_into": ["micro.pick-place.v1"]
+    },
+    {
+      "skill_id": "grasp.object.pinch.v1",
+      "verb": "grasp",
+      "duration_sec": { "min": 5, "max": 12 },
+      "primary_angles": ["egocentric_chest", "wrist_dominant"],
+      "props": ["packet", "spoon", "filter paper"],
+      "bounty_usdc": 12,
+      "sprint": "gtm-sprint-1",
+      "slots": 8,
+      "composes_into": ["place.filter.in-dripper.v1"]
+    },
+    {
+      "skill_id": "release.object.gentle.v1",
+      "verb": "release",
+      "duration_sec": { "min": 3, "max": 8 },
+      "primary_angles": ["egocentric_chest", "top_down"],
+      "props": ["any object just placed"],
+      "bounty_usdc": 8,
+      "sprint": "gtm-sprint-1",
+      "slots": 8,
+      "composes_into": ["micro.pick-place.v1"]
+    },
+    {
+      "skill_id": "lift.object.vertical.v1",
+      "verb": "lift",
+      "duration_sec": { "min": 5, "max": 10 },
+      "primary_angles": ["egocentric_chest", "third_person_45"],
+      "props": ["cup", "small box"],
+      "bounty_usdc": 10,
+      "sprint": "gtm-sprint-1",
+      "slots": 8,
+      "composes_into": ["micro.pick-place.v1", "transport.object.short.v1"]
+    },
+    {
+      "skill_id": "place.object.on-surface.v1",
+      "verb": "place",
+      "duration_sec": { "min": 5, "max": 12 },
+      "primary_angles": ["egocentric_chest", "top_down"],
+      "props": ["object", "target spot marked optional"],
+      "bounty_usdc": 10,
+      "sprint": "gtm-sprint-1",
+      "slots": 8,
+      "composes_into": ["micro.pick-place.v1"]
+    },
+    {
+      "skill_id": "transport.object.short.v1",
+      "verb": "transport",
+      "duration_sec": { "min": 10, "max": 20 },
+      "primary_angles": ["egocentric_chest", "top_down"],
+      "props": ["object", "start mark", "end mark 30cm apart"],
+      "bounty_usdc": 12,
+      "sprint": "gtm-sprint-1",
+      "slots": 8,
+      "composes_into": ["micro.pick-place.v1"]
+    },
+    {
+      "skill_id": "pour.liquid.thin-stream.v1",
+      "verb": "pour",
+      "duration_sec": { "min": 8, "max": 15 },
+      "primary_angles": ["egocentric_chest", "third_person_45"],
+      "props": ["bottle or kettle", "cup"],
+      "bounty_usdc": 15,
+      "sprint": "gtm-sprint-1",
+      "slots": 10,
+      "composes_into": ["micro.pour-cup.v1", "pour-over.coffee.v1"]
+    },
+    {
+      "skill_id": "pour.liquid.stop-clean.v1",
+      "verb": "pour",
+      "duration_sec": { "min": 5, "max": 10 },
+      "primary_angles": ["egocentric_chest"],
+      "props": ["kettle or bottle", "cup"],
+      "bounty_usdc": 12,
+      "sprint": "gtm-sprint-1",
+      "slots": 8,
+      "composes_into": ["micro.pour-cup.v1", "pour-over.coffee.v1"]
+    },
+    {
+      "skill_id": "wipe.surface.single-stroke.v1",
+      "verb": "wipe",
+      "duration_sec": { "min": 5, "max": 10 },
+      "primary_angles": ["egocentric_chest", "top_down"],
+      "props": ["cloth", "flat surface"],
+      "bounty_usdc": 10,
+      "sprint": "gtm-sprint-1",
+      "slots": 8,
+      "composes_into": ["hospitality.bed-turndown.v1"]
+    },
+    {
+      "skill_id": "place.filter.in-dripper.v1",
+      "verb": "place",
+      "duration_sec": { "min": 8, "max": 15 },
+      "primary_angles": ["egocentric_chest", "top_down"],
+      "props": ["paper filter", "dripper"],
+      "bounty_usdc": 14,
+      "sprint": "gtm-sprint-2",
+      "slots": 8,
+      "composes_into": ["pour-over.coffee.v1"]
+    },
+    {
+      "skill_id": "kettle.tilt.pour-angle.v1",
+      "verb": "tilt",
+      "duration_sec": { "min": 5, "max": 12 },
+      "primary_angles": ["egocentric_chest", "third_person_45"],
+      "props": ["kettle", "dripper below"],
+      "bounty_usdc": 12,
+      "sprint": "gtm-sprint-2",
+      "slots": 8,
+      "composes_into": ["pour-over.coffee.v1"]
+    },
+    {
+      "skill_id": "pour.liquid.spiral-small.v1",
+      "verb": "pour",
+      "duration_sec": { "min": 10, "max": 18 },
+      "primary_angles": ["egocentric_chest", "top_down"],
+      "props": ["kettle", "dripper with filter"],
+      "bounty_usdc": 18,
+      "sprint": "gtm-sprint-2",
+      "slots": 8,
+      "composes_into": ["pour-over.coffee.v1"]
+    },
+    {
+      "skill_id": "cup.place.under-spout.v1",
+      "verb": "place",
+      "duration_sec": { "min": 5, "max": 12 },
+      "primary_angles": ["egocentric_chest", "top_down"],
+      "props": ["cup", "dripper stand"],
+      "bounty_usdc": 10,
+      "sprint": "gtm-sprint-2",
+      "slots": 6,
+      "composes_into": ["pour-over.coffee.v1"]
+    },
+    {
+      "skill_id": "flip.pancake.spatula-slide.v1",
+      "verb": "slide",
+      "duration_sec": { "min": 8, "max": 15 },
+      "primary_angles": ["third_person_45", "wrist_dominant"],
+      "props": ["spatula", "pancake on griddle"],
+      "bounty_usdc": 16,
+      "sprint": "gtm-sprint-2",
+      "slots": 8,
+      "composes_into": ["pancake.flip.v1"]
+    },
+    {
+      "skill_id": "flip.pancake.single.v1",
+      "verb": "flip",
+      "duration_sec": { "min": 5, "max": 12 },
+      "primary_angles": ["third_person_45"],
+      "props": ["spatula", "pancake"],
+      "bounty_usdc": 20,
+      "sprint": "gtm-sprint-2",
+      "slots": 8,
+      "composes_into": ["pancake.flip.v1"]
+    },
+    {
+      "skill_id": "pour.batter.circle.v1",
+      "verb": "pour",
+      "duration_sec": { "min": 8, "max": 15 },
+      "primary_angles": ["third_person_45", "egocentric_chest"],
+      "props": ["ladle", "batter", "griddle"],
+      "bounty_usdc": 14,
+      "sprint": "gtm-sprint-2",
+      "slots": 6,
+      "composes_into": ["pancake.flip.v1"]
+    },
+    {
+      "skill_id": "tuck.sheet.corner.v1",
+      "verb": "tuck",
+      "duration_sec": { "min": 15, "max": 25 },
+      "primary_angles": ["egocentric_chest"],
+      "props": ["bed", "sheet"],
+      "bounty_usdc": 18,
+      "sprint": "gtm-sprint-2",
+      "slots": 8,
+      "composes_into": ["hospitality.bed-turndown.v1"]
+    },
+    {
+      "skill_id": "fold.towel.half.v1",
+      "verb": "fold",
+      "duration_sec": { "min": 10, "max": 20 },
+      "primary_angles": ["egocentric_chest", "top_down"],
+      "props": ["towel"],
+      "bounty_usdc": 14,
+      "sprint": "gtm-sprint-2",
+      "slots": 8,
+      "composes_into": ["hospitality.bed-turndown.v1"]
+    },
+    {
+      "skill_id": "pillow.place.upright.v1",
+      "verb": "place",
+      "duration_sec": { "min": 8, "max": 15 },
+      "primary_angles": ["egocentric_chest"],
+      "props": ["pillow", "bed head"],
+      "bounty_usdc": 12,
+      "sprint": "gtm-sprint-2",
+      "slots": 6,
+      "composes_into": ["hospitality.bed-turndown.v1"]
+    },
+    {
+      "skill_id": "pillow.lift.remove.v1",
+      "verb": "lift",
+      "duration_sec": { "min": 5, "max": 12 },
+      "primary_angles": ["egocentric_chest"],
+      "props": ["pillow"],
+      "bounty_usdc": 10,
+      "sprint": "gtm-sprint-2",
+      "slots": 6,
+      "composes_into": ["hospitality.bed-turndown.v1"]
+    },
+    {
+      "skill_id": "open.lid.twist.v1",
+      "verb": "open",
+      "duration_sec": { "min": 10, "max": 20 },
+      "primary_angles": ["egocentric_chest", "wrist_dominant"],
+      "props": ["jar with twist lid"],
+      "bimanual": true,
+      "bounty_usdc": 16,
+      "sprint": "gtm-sprint-2",
+      "slots": 8,
+      "composes_into": ["manipulation.open-container.v1"]
+    },
+    {
+      "skill_id": "insert.object.slot.v1",
+      "verb": "insert",
+      "duration_sec": { "min": 8, "max": 15 },
+      "primary_angles": ["egocentric_chest", "top_down"],
+      "props": ["key", "usb", "or peg"],
+      "bounty_usdc": 18,
+      "sprint": "gtm-sprint-2",
+      "slots": 6,
+      "composes_into": ["manipulation.insertion.v1"]
+    },
+    {
+      "skill_id": "rotate.object.in-hand.v1",
+      "verb": "rotate",
+      "duration_sec": { "min": 8, "max": 15 },
+      "primary_angles": ["egocentric_chest", "wrist_dominant"],
+      "props": ["small object"],
+      "bounty_usdc": 16,
+      "sprint": "gtm-sprint-2",
+      "slots": 6,
+      "composes_into": ["dexterity.in-hand-rotate.v1"]
+    },
+    {
+      "skill_id": "push.object.slide.v1",
+      "verb": "push",
+      "duration_sec": { "min": 5, "max": 12 },
+      "primary_angles": ["top_down", "egocentric_chest"],
+      "props": ["object on table"],
+      "bounty_usdc": 10,
+      "sprint": "gtm-sprint-2",
+      "slots": 6,
+      "composes_into": ["manipulation.pick-place.v1"]
+    },
+    {
+      "skill_id": "pull.drawer.open.v1",
+      "verb": "pull",
+      "duration_sec": { "min": 8, "max": 15 },
+      "primary_angles": ["egocentric_chest", "third_person_45"],
+      "props": ["drawer handle"],
+      "bounty_usdc": 14,
+      "sprint": "gtm-sprint-2",
+      "slots": 6,
+      "composes_into": ["hospitality.minibar-restock.v1"]
+    },
+    {
+      "skill_id": "stack.object.on-object.v1",
+      "verb": "stack",
+      "duration_sec": { "min": 8, "max": 15 },
+      "primary_angles": ["egocentric_chest", "top_down"],
+      "props": ["two flat objects e.g. plates"],
+      "bounty_usdc": 12,
+      "sprint": "gtm-sprint-2",
+      "slots": 6,
+      "composes_into": ["kit.assembly.v1"]
+    },
+    {
+      "skill_id": "scoop.soil.single.v1",
+      "verb": "scoop",
+      "duration_sec": { "min": 8, "max": 15 },
+      "primary_angles": ["third_person_45", "egocentric_chest"],
+      "props": ["trowel", "soil", "pot"],
+      "bounty_usdc": 14,
+      "sprint": "gtm-sprint-2",
+      "slots": 6,
+      "composes_into": ["plant.pot.v1"]
+    },
+    {
+      "skill_id": "plant.upright.press.v1",
+      "verb": "press",
+      "duration_sec": { "min": 8, "max": 15 },
+      "primary_angles": ["third_person_45"],
+      "props": ["plant", "soil in pot"],
+      "bounty_usdc": 14,
+      "sprint": "gtm-sprint-2",
+      "slots": 6,
+      "composes_into": ["plant.pot.v1"]
+    },
+    {
+      "skill_id": "snap.part.connect.v1",
+      "verb": "snap",
+      "duration_sec": { "min": 5, "max": 12 },
+      "primary_angles": ["top_down", "egocentric_chest"],
+      "props": ["two kit parts"],
+      "bounty_usdc": 16,
+      "sprint": "gtm-sprint-2",
+      "slots": 6,
+      "composes_into": ["kit.assembly.v1"]
+    },
+    {
+      "skill_id": "peel.sticker.single.v1",
+      "verb": "peel",
+      "duration_sec": { "min": 5, "max": 12 },
+      "primary_angles": ["wrist_dominant", "egocentric_chest"],
+      "props": ["sticker or label"],
+      "bounty_usdc": 14,
+      "sprint": "gtm-sprint-2",
+      "slots": 6,
+      "composes_into": ["kit.assembly.v1"]
+    },
+    {
+      "skill_id": "minibar.item.lift.v1",
+      "verb": "lift",
+      "duration_sec": { "min": 5, "max": 10 },
+      "primary_angles": ["egocentric_chest"],
+      "props": ["bottle or snack in minibar"],
+      "bounty_usdc": 10,
+      "sprint": "gtm-sprint-2",
+      "slots": 6,
+      "composes_into": ["hospitality.minibar-restock.v1"]
+    },
+    {
+      "skill_id": "minibar.item.place.v1",
+      "verb": "place",
+      "duration_sec": { "min": 5, "max": 10 },
+      "primary_angles": ["egocentric_chest"],
+      "props": ["item", "minibar slot"],
+      "bounty_usdc": 10,
+      "sprint": "gtm-sprint-2",
+      "slots": 6,
+      "composes_into": ["hospitality.minibar-restock.v1"]
+    }
+  ],
+  "micro_tasks": [
+    {
+      "skill_id": "micro.pick-place.v1",
+      "skill_level": "micro",
+      "duration_sec": { "min": 20, "max": 45 },
+      "stack": [
+        "reach.object.above-surface.v1",
+        "grasp.object.power.v1",
+        "lift.object.vertical.v1",
+        "transport.object.short.v1",
+        "place.object.on-surface.v1",
+        "release.object.gentle.v1"
+      ],
+      "sprint": "gtm-sprint-3"
+    },
+    {
+      "skill_id": "micro.pour-cup.v1",
+      "skill_level": "micro",
+      "duration_sec": { "min": 25, "max": 50 },
+      "stack": [
+        "pour.liquid.thin-stream.v1",
+        "pour.liquid.stop-clean.v1"
+      ],
+      "sprint": "gtm-sprint-3"
+    },
+    {
+      "skill_id": "micro.pour-over.minimal.v1",
+      "skill_level": "micro",
+      "duration_sec": { "min": 40, "max": 70 },
+      "stack": [
+        "place.filter.in-dripper.v1",
+        "cup.place.under-spout.v1",
+        "kettle.tilt.pour-angle.v1",
+        "pour.liquid.spiral-small.v1",
+        "pour.liquid.stop-clean.v1"
+      ],
+      "sprint": "gtm-sprint-3"
+    },
+    {
+      "skill_id": "micro.pancake.flip.v1",
+      "skill_level": "micro",
+      "duration_sec": { "min": 30, "max": 55 },
+      "stack": [
+        "flip.pancake.spatula-slide.v1",
+        "flip.pancake.single.v1"
+      ],
+      "sprint": "gtm-sprint-3"
+    },
+    {
+      "skill_id": "micro.turndown.corner.v1",
+      "skill_level": "micro",
+      "duration_sec": { "min": 35, "max": 60 },
+      "stack": [
+        "pillow.lift.remove.v1",
+        "tuck.sheet.corner.v1",
+        "pillow.place.upright.v1"
+      ],
+      "sprint": "gtm-sprint-3"
+    }
+  ],
+  "composites": [
+    {
+      "skill_id": "pour-over.coffee.v1",
+      "skill_level": "composite",
+      "bounty_active": false,
+      "stack": [
+        "place.filter.in-dripper.v1",
+        "cup.place.under-spout.v1",
+        "kettle.tilt.pour-angle.v1",
+        "pour.liquid.spiral-small.v1",
+        "pour.liquid.stop-clean.v1"
+      ]
+    },
+    {
+      "skill_id": "pancake.flip.v1",
+      "skill_level": "composite",
+      "bounty_active": false,
+      "stack": [
+        "pour.batter.circle.v1",
+        "flip.pancake.spatula-slide.v1",
+        "flip.pancake.single.v1"
+      ]
+    },
+    {
+      "skill_id": "hospitality.bed-turndown.v1",
+      "skill_level": "composite",
+      "bounty_active": false,
+      "stack": [
+        "pillow.lift.remove.v1",
+        "tuck.sheet.corner.v1",
+        "fold.towel.half.v1",
+        "pillow.place.upright.v1"
+      ]
+    },
+    {
+      "skill_id": "plant.pot.v1",
+      "skill_level": "composite",
+      "bounty_active": false,
+      "stack": [
+        "scoop.soil.single.v1",
+        "plant.upright.press.v1"
+      ]
+    },
+    {
+      "skill_id": "kit.assembly.v1",
+      "skill_level": "composite",
+      "bounty_active": false,
+      "stack": [
+        "snap.part.connect.v1",
+        "peel.sticker.single.v1",
+        "stack.object.on-object.v1"
+      ]
+    }
+  ]
+}

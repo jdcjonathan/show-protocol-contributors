@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "name": "SHOW Protocol",
+  "description": "Atomic human skill clips for robot video-ICL — discover free, license on Taiko Hoodi.",
+  "url": "https://github.com/jdcjonathan/show-protocol-contributors",
+  "bootstrap": "SKILL.md",
+  "doc_index": "llms.txt",
+  "capabilities": ["discover", "preview", "evaluate", "license"],
+  "payment": {
+    "currency": "USDC",
+    "chain_id": 167013,
+    "network": "taiko-hoodi"
+  },
+  "endpoints": {
+    "taxonomy": "schemas/skill-taxonomy-atomic.json",
+    "opportunity_feed": "schemas/opportunity-feed-v1.json",
+    "use_cases": "schemas/use-cases-v1.json",
+    "catalog": "catalog/sprint-1/index.json",
+    "deployments": "deployments/hoodi.json"
+  },
+  "moltbook": {
+    "demand_tag": "TrainingRequest",
+    "supply_tag": "SkillOffer",
+    "gauge_doc": "docs/moltbook-gauge-public.md"
+  }
+}

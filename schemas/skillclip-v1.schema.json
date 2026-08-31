@@ -1,0 +1,209 @@
+{
+  "$id": "https://show-protocol.dev/schemas/skillclip-v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SHOW SkillClip Sidecar v1",
+  "description": "Atomic SkillClip metadata pinned alongside video on Tack/IPFS. Hash committed on-chain before mint.",
+  "type": "object",
+  "required": [
+    "type",
+    "sidecar_version",
+    "skill_id",
+    "skill_level",
+    "capture_tier",
+    "duration_sec",
+    "video_cid",
+    "content_hash",
+    "sidecar_hash",
+    "consent",
+    "capture"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "https://show.protocol/skillclip-v1"
+    },
+    "sidecar_version": {
+      "type": "string",
+      "pattern": "^1\\.0\\.0$"
+    },
+    "skill_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(\\.[a-z0-9-]+)+\\.v[0-9]+$",
+      "description": "e.g. grasp.object.power.v1"
+    },
+    "skill_level": {
+      "type": "string",
+      "enum": ["primitive", "micro", "composite"]
+    },
+    "capture_tier": {
+      "type": "string",
+      "enum": ["A", "B", "C"]
+    },
+    "duration_sec": {
+      "type": "number",
+      "minimum": 3,
+      "maximum": 600
+    },
+    "video_cid": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Tack or IPFS CID of video bytes"
+    },
+    "content_hash": {
+      "type": "string",
+      "pattern": "^0x[a-fA-F0-9]{64}$",
+      "description": "keccak256 of raw video file"
+    },
+    "sidecar_hash": {
+      "type": "string",
+      "pattern": "^0x[a-fA-F0-9]{64}$",
+      "description": "keccak256 of canonical JSON (excluding this field)"
+    },
+    "creator_address": {
+      "type": "string",
+      "pattern": "^0x[a-fA-F0-9]{40}$"
+    },
+    "chain_id": {
+      "type": "integer",
+      "const": 167013
+    },
+    "objects": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "environment_class": {
+      "type": "string",
+      "enum": [
+        "home_kitchen",
+        "commercial_kitchen",
+        "hotel_room",
+        "warehouse",
+        "lab_bench",
+        "outdoor",
+        "other"
+      ]
+    },
+    "lighting": {
+      "type": "string",
+      "enum": ["indoor_natural", "indoor_artificial", "mixed", "outdoor"]
+    },
+    "handedness": {
+      "type": "string",
+      "enum": ["left", "right", "ambidextrous", "unknown"]
+    },
+    "primary_angle": {
+      "type": "string",
+      "enum": [
+        "egocentric_chest",
+        "egocentric_wrist",
+        "top_down",
+        "third_person_45",
+        "third_person_fixed"
+      ]
+    },
+    "capture": {
+      "type": "object",
+      "required": ["single_take", "resolution_min", "hands_visible_at_t0"],
+      "properties": {
+        "single_take": { "type": "boolean", "const": true },
+        "resolution_min": { "type": "string", "const": "1080p" },
+        "hands_visible_at_t0": { "type": "boolean", "const": true },
+        "audio": {
+          "type": "string",
+          "enum": ["silent", "ambient_only"]
+        },
+        "device": {
+          "type": "string",
+          "description": "e.g. smartphone_2021+"
+        }
+      }
+    },
+    "consent": {
+      "type": "object",
+      "required": [
+        "commercial_training",
+        "residual_participation",
+        "signed_at"
+      ],
+      "properties": {
+        "commercial_training": { "type": "boolean", "const": true },
+        "residual_participation": { "type": "boolean" },
+        "signed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "referral": {
+      "type": "object",
+      "properties": {
+        "creator_referrer": {
+          "type": "string",
+          "pattern": "^0x[a-fA-F0-9]{40}$"
+        },
+        "code": { "type": "string", "maxLength": 64 }
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "description": "PicBreeder-style branch — optional parent clip in hunt tree",
+      "properties": {
+        "parent_token_id": {
+          "type": ["integer", "null"],
+          "description": "On-chain SkillClip token id this variant branches from"
+        },
+        "variant_tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "e.g. mug, warm_light, home_kitchen"
+        },
+        "discovery_note": {
+          "type": "string",
+          "maxLength": 280,
+          "description": "Creator hunter note — why this branch"
+        }
+      }
+    },
+    "bounty": {
+      "type": "object",
+      "properties": {
+        "sprint": { "type": "string" },
+        "usdc_amount": { "type": "number", "minimum": 0 }
+      }
+    },
+    "dual_publish": {
+      "type": "object",
+      "description": "Optional — creator also uses gig platforms; certifies rights to mint",
+      "properties": {
+        "also_submitted_to": {
+          "type": "array",
+          "items": { "enum": ["figure_index", "luel", "other"] }
+        },
+        "platform_paid": { "type": "boolean" },
+        "show_mint_is": {
+          "type": "string",
+          "enum": ["same_session_atomic", "second_take", "show_only"]
+        },
+        "creator_certifies_rights": { "type": "boolean", "const": true }
+      },
+      "required": ["creator_certifies_rights"]
+    },
+    "optional_modalities": {
+      "type": "object",
+      "properties": {
+        "depth_cid": { "type": ["string", "null"] },
+        "imu_cid": { "type": ["string", "null"] }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "skill_level": { "const": "primitive" } }
+      },
+      "then": {
+        "properties": {
+          "duration_sec": { "maximum": 20 }
+        }
+      }
+    }
+  ]
+}

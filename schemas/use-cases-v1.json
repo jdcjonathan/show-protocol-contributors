@@ -1,0 +1,70 @@
+{
+  "version": "1.0.0",
+  "description": "Robot/agent use cases that drive discovery — what human content types create economic value now",
+  "updated_at": "2026-08-30",
+  "use_cases": [
+    {
+      "use_case_id": "hospitality.breakfast.pour",
+      "title": "Hotel breakfast beverage service",
+      "vertical": "hospitality",
+      "deployment_signal": "hotel breakfast robot cells, S1 OOD pour demos",
+      "value_driver": "task_gmv_per_drink",
+      "illustrative_gmv_usd": 1.2,
+      "atomic_stack": [
+        "reach.object.above-surface.v1",
+        "grasp.object.power.v1",
+        "pour.liquid.thin-stream.v1",
+        "pour.liquid.stop-clean.v1",
+        "place.object.on-surface.v1"
+      ],
+      "composite_target": "pour-over.coffee.v1",
+      "discovery_hook": "Film one pour primitive — robots stack into full breakfast service"
+    },
+    {
+      "use_case_id": "hospitality.room.minibar",
+      "title": "Minibar check and restock",
+      "vertical": "hospitality",
+      "deployment_signal": "night-shift robots, bimanual short tasks",
+      "value_driver": "floor_labor_substitution",
+      "atomic_stack": [
+        "grasp.object.pinch.v1",
+        "lift.object.vertical.v1",
+        "transport.object.short.v1",
+        "release.object.gentle.v1"
+      ],
+      "discovery_hook": "30 s atomics — both hands visible — stack into restock micro-task"
+    },
+    {
+      "use_case_id": "kitchen.pick-place",
+      "title": "Counter pick and place",
+      "vertical": "qsr_kitchen",
+      "deployment_signal": "VLA fine-tune + ICL prompt for line tasks",
+      "value_driver": "line_throughput",
+      "atomic_stack": [
+        "reach.object.above-surface.v1",
+        "grasp.object.power.v1",
+        "transport.object.short.v1",
+        "place.object.on-surface.v1"
+      ],
+      "discovery_hook": "Highest volume manipulation wedge — many object variants = discovery depth"
+    },
+    {
+      "use_case_id": "kitchen.surface.wipe",
+      "title": "Surface wipe between orders",
+      "vertical": "qsr_kitchen",
+      "deployment_signal": "hygiene automation on short horizons",
+      "value_driver": "compliance + throughput",
+      "atomic_stack": ["wipe.surface.single-stroke.v1"],
+      "discovery_hook": "Single-stroke atomics — fast to film, easy to validate"
+    },
+    {
+      "use_case_id": "home.container.open",
+      "title": "Open jar or container",
+      "vertical": "home_kitchen",
+      "deployment_signal": "deformable + bimanual scarce in public data",
+      "value_driver": "ood_generalization",
+      "atomic_stack": ["grasp.object.power.v1", "jar.twist.open.v1"],
+      "discovery_hook": "Scarce skill — high discovery excitement when clips exist"
+    }
+  ]
+}

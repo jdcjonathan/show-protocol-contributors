@@ -1,0 +1,34 @@
+{
+  "type": "https://show.protocol/skillclip-v1",
+  "sidecar_version": "1.0.0",
+  "skill_id": "grasp.object.power.v1",
+  "skill_level": "primitive",
+  "capture_tier": "A",
+  "duration_sec": 8.2,
+  "video_cid": "bafyREPLACE_WITH_TACK_OR_IPFS_CID",
+  "content_hash": "0xREPLACE_keccak256_of_raw_video_file",
+  "sidecar_hash": "0xREPLACE_after_canonicalizing_without_this_field",
+  "creator_address": "0xREPLACE_creator_wallet",
+  "chain_id": 167013,
+  "objects": ["cup", "mug"],
+  "environment_class": "home_kitchen",
+  "lighting": "indoor_natural",
+  "handedness": "right",
+  "primary_angle": "egocentric_chest",
+  "capture": {
+    "single_take": true,
+    "resolution_min": "1080p",
+    "hands_visible_at_t0": true,
+    "audio": "silent",
+    "device": "smartphone_2021+"
+  },
+  "consent": {
+    "commercial_training": true,
+    "residual_participation": true,
+    "signed_at": "2026-08-30T00:00:00Z"
+  },
+  "bounty": {
+    "sprint": "gtm-sprint-1",
+    "usdc_amount": 10
+  }
+}

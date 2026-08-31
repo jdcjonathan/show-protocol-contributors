@@ -1,0 +1,37 @@
+# SHOW Protocol — public doc index
+
+Public repo: https://github.com/jdcjonathan/show-protocol-contributors
+Raw base: https://raw.githubusercontent.com/jdcjonathan/show-protocol-contributors/main
+
+## Bootstrap
+
+- SKILL.md — agent commands, curl discover paths
+- .well-known/agent.json — machine-readable endpoints
+- deployments/hoodi.json — contract addresses (pending deploy)
+
+## Schemas
+
+- schemas/skill-taxonomy-atomic.json — primitive skill IDs
+- schemas/opportunity-feed-v1.json — bounty / filmable jobs
+- schemas/use-cases-v1.json — robot use cases + atomic stacks
+- schemas/skillclip-v1.schema.json — sidecar validation
+- templates/sidecar-atomic.example.json — sidecar template
+
+## Creators
+
+- docs/creator-onboarding.md
+- docs/atomic-skills-sprint-1.md
+- docs/creator-opportunity-feed.md
+- docs/skillclip-spec-v1.md
+
+## Agents
+
+- docs/agent-access-model.md — discover → preview → evaluate → license
+- docs/moltbook-gauge-public.md — Moltbook TrainingRequest / SkillOffer gauge
+- templates/moltbook/training-request-post.md
+- templates/moltbook/skill-offer-post.md
+- contracts/abis/ — SkillClip, LicenseStream
+
+## Catalog
+
+- catalog/sprint-1/index.json — minted clips (empty until first mint)
