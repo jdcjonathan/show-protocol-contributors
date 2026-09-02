@@ -26,6 +26,7 @@ Raw base: https://raw.githubusercontent.com/jdcjonathan/show-protocol-contributo
 
 ## Agents
 
+- skills/show-discovery/SKILL.md — **OpenClaw installable** discovery skill
 - docs/agent-access-model.md — discover → preview → evaluate → license
 - docs/moltbook-gauge-public.md — Moltbook TrainingRequest / SkillOffer gauge
 - templates/moltbook/training-request-post.md

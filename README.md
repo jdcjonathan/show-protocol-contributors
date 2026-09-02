@@ -25,6 +25,7 @@ Replace `main` with branch/tag if needed.
 | Catalog index | https://raw.githubusercontent.com/jdcjonathan/show-protocol-contributors/main/catalog/sprint-1/index.json |
 | Agent bootstrap | https://raw.githubusercontent.com/jdcjonathan/show-protocol-contributors/main/SKILL.md |
 | Agent manifest | https://raw.githubusercontent.com/jdcjonathan/show-protocol-contributors/main/.well-known/agent.json |
+| **OpenClaw discovery skill** | https://raw.githubusercontent.com/jdcjonathan/show-protocol-contributors/main/skills/show-discovery/SKILL.md |
 
 ## Creators
 
@@ -37,6 +38,13 @@ Live bounty JSON: [schemas/opportunity-feed-v1.json](schemas/opportunity-feed-v1
 
 ## Robot developers & agents
 
+**Install discovery skill (OpenClaw):**
+
+```bash
+openclaw skill install https://raw.githubusercontent.com/jdcjonathan/show-protocol-contributors/main/skills/show-discovery/SKILL.md
+```
+
+- [skills/show-discovery/SKILL.md](skills/show-discovery/SKILL.md) — installable agent skill
 - [SKILL.md](SKILL.md) — bootstrap + curl paths
 - [llms.txt](llms.txt) — doc index
 - [Agent access model](docs/agent-access-model.md) — discover → preview → evaluate → license

@@ -1,0 +1,18 @@
+{
+  "name": "show-discovery",
+  "version": "0.1.0",
+  "description": "Discover atomic human skill clips for robot video-ICL",
+  "homepage": "https://github.com/jdcjonathan/show-protocol-contributors",
+  "category": "robotics",
+  "mode": "read-only",
+  "public_base": "https://raw.githubusercontent.com/jdcjonathan/show-protocol-contributors/main",
+  "files": {
+    "SKILL.md": "skills/show-discovery/SKILL.md",
+    "RULES.md": "skills/show-discovery/RULES.md"
+  },
+  "endpoints": {
+    "manifest": ".well-known/agent.json",
+    "taxonomy": "schemas/skill-taxonomy-atomic.json",
+    "catalog": "catalog/sprint-1/index.json"
+  }
+}

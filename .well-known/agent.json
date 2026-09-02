@@ -11,6 +11,8 @@
     "chain_id": 167013,
     "network": "taiko-hoodi"
   },
+  "openclaw_skill": "skills/show-discovery/SKILL.md",
+  "openclaw_install": "openclaw skill install https://raw.githubusercontent.com/jdcjonathan/show-protocol-contributors/main/skills/show-discovery/SKILL.md",
   "endpoints": {
     "taxonomy": "schemas/skill-taxonomy-atomic.json",
     "opportunity_feed": "schemas/opportunity-feed-v1.json",
