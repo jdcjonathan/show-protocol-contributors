@@ -9,6 +9,15 @@
   "content_hash": "0xREPLACE_keccak256_of_raw_video_file",
   "sidecar_hash": "0xREPLACE_after_canonicalizing_without_this_field",
   "creator_address": "0xREPLACE_creator_wallet",
+  "contributor": {
+    "kind": "human",
+    "id": "github-or-moltbook-handle"
+  },
+  "donate": {
+    "enabled": true,
+    "currency": "USDC",
+    "note": "Thanks only — does not grant a license"
+  },
   "chain_id": 167013,
   "objects": ["cup", "mug"],
   "environment_class": "home_kitchen",

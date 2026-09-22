@@ -1,7 +1,7 @@
 {
   "name": "show-discovery",
-  "version": "0.1.0",
-  "description": "Discover atomic human skill clips for robot video-ICL",
+  "version": "0.3.1",
+  "description": "Discover and contribute SHOW motor skills — humans and agents; video-ICL and sim-to-real",
   "homepage": "https://github.com/jdcjonathan/show-protocol-contributors",
   "category": "robotics",
   "mode": "read-only",
@@ -11,8 +11,12 @@
     "RULES.md": "skills/show-discovery/RULES.md"
   },
   "endpoints": {
+    "contributing": "schemas/contributing-v1.json",
+    "donate": "schemas/donate-v1.json",
     "manifest": ".well-known/agent.json",
     "taxonomy": "schemas/skill-taxonomy-atomic.json",
+    "training_modes": "schemas/training-modes-v1.json",
+    "embodiments": "schemas/embodiments-v1.json",
     "catalog": "catalog/sprint-1/index.json"
   }
 }

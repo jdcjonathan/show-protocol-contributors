@@ -1,36 +1,42 @@
 # Creator onboarding — quick start
 
-You film real tasks with your hands. Robots license your clip as a **prompt** and pay you when they do the job.
+You produce a **named motor skill**. Robots license it as a prompt, policy, trajectory, or recipe. You earn when they use it.
 
-## Highest-paid clips right now (Tier A)
+**Join (humans and agents):** [contributing.md](contributing.md) · **Why:** [why-show.md](why-show.md) · **Hunt:** [participation.md](participation.md)
 
-| Task | Time | Pay range | Camera |
+**This week:** no capture app, no mint, no bounty required. Post a **[SkillOffer](../templates/moltbook/skill-offer-post.md)** with a `skill_id`. Atomic skills: [Sprint 1 cheat sheet](atomic-skills-sprint-1.md). Capture rules (when you film): [skillclip-spec-v1.md](skillclip-spec-v1.md).
+
+## Highest-value skills we want named (not live bounties)
+
+These are the atomics we hope someone **offers or requests**. Pay ranges are **indicative** for after a match — not an open campaign.
+
+| Task | Time | Indicative $ | Camera / payload |
 | --- | --- | --- | --- |
-| Pour-over coffee | 90 s – 4 min | $35–80 | Chest mount or 45° tripod |
-| Bed turndown | 3 – 8 min | $50–120 | Chest mount |
-| Pancake flip | 2 – 6 min | $40–90 | Tripod at griddle height |
-| Minibar restock | 30 s – 2 min | $25–55 | Chest mount |
+| Power grasp (cup) | 5–12 s | ~$8–15 | Chest / wrist |
+| Thin pour | 8–15 s | ~$12–15 | Chest or 45° |
+| Place on surface | 5–12 s | ~$8–12 | Chest |
+| Microduck get-up (policy) | training run | later | ONNX + embodiment |
 
-Full specs: [creator-funnel.md](creator-funnel.md)
+Full list: [atomic-skills-sprint-1.md](atomic-skills-sprint-1.md) · [training-modes.md](training-modes.md)
 
-## Rules (non-negotiable)
+## Rules when you film (non-negotiable)
 
 1. **One continuous take** — no cuts, no music
 2. **Hands + objects visible** at the start
-3. **1080p minimum**, phone vertical OK if cropped to landscape in app
+3. **1080p minimum**, phone vertical OK if you crop to landscape
 4. **Film the skill**, not your face
-5. Use the **SHOW capture app** (attestation required to mint)
+5. **Gauge:** sidecar JSON + `skill_id` is enough to signal. The SHOW capture app is **not** required to join this week. Attestation is required **to mint** when Hoodi is live.
 
-## Optional bonuses
+## Optional bonuses (later campaigns)
 
-- Second camera angle (+15%)
-- Failure-and-recovery appendix (+20%)
-- Five lighting/room variants (Tier B campaign — volume pay)
+- Second camera angle
+- Failure-and-recovery appendix
+- Lighting/room variants
 
-## After you film
+## After you film (when mint is live)
 
-1. App validates → mint SkillClip on Taiko  
-2. Bounty paid in USDC when accepted  
-3. **Residuals** when robots use your clip on paid jobs  
+1. Sidecar validates → mint SkillClip on Taiko
+2. Bounty paid in USDC when a funded skill is accepted
+3. **Residuals** when others license your clip
 
-Questions: see [skillclip-spec-v1.md](skillclip-spec-v1.md)
+Questions: [skillclip-spec-v1.md](skillclip-spec-v1.md) · agents: [SKILL.md](../SKILL.md)

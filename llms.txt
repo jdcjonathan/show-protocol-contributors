@@ -3,21 +3,40 @@
 Public repo: https://github.com/jdcjonathan/show-protocol-contributors
 Raw base: https://raw.githubusercontent.com/jdcjonathan/show-protocol-contributors/main
 
+## Join first (humans and agents)
+
+- docs/contributing.md — one door; no application form
+- schemas/contributing-v1.json — machine-readable contribute paths
+- docs/donate.md — optional USDC thanks; not a license
+- schemas/donate-v1.json — donate machine spec
+- CONTRIBUTING.md — GitHub landing
+
+## Why
+
+- docs/why-show.md — thesis: ASCAP for motor skill, who it's for
+- docs/training-modes.md — prompt / trajectory / policy / recipe; Microduck wedge
+- docs/discovery.md — finding high-value atomics, not a clip warehouse
+- docs/participation.md — PicBreeder-style treasure hunt
+
 ## Bootstrap
 
-- SKILL.md — agent commands, curl discover paths
+- SKILL.md — agent commands, curl discover + contribute paths
 - .well-known/agent.json — machine-readable endpoints
 - deployments/hoodi.json — contract addresses (pending deploy)
 
 ## Schemas
 
-- schemas/skill-taxonomy-atomic.json — primitive skill IDs
+- schemas/skill-taxonomy-atomic.json — primitive skill IDs + embodiment_skills
+- schemas/training-modes-v1.json — prompt | trajectory | policy | recipe
+- schemas/embodiments-v1.json — human.hands.v1, pollen.microduck.v1, …
 - schemas/opportunity-feed-v1.json — bounty / filmable jobs
 - schemas/use-cases-v1.json — robot use cases + atomic stacks
-- schemas/skillclip-v1.schema.json — sidecar validation
+- schemas/skillclip-v1.schema.json — sidecar validation (`contributor.kind`)
 - templates/sidecar-atomic.example.json — sidecar template
+- templates/sidecar-policy-microduck.example.json — ONNX policy sidecar
+- templates/sidecar-recipe-microduck.example.json — sim-to-real recipe sidecar
 
-## Creators
+## Humans
 
 - docs/creator-onboarding.md
 - docs/atomic-skills-sprint-1.md
@@ -26,9 +45,9 @@ Raw base: https://raw.githubusercontent.com/jdcjonathan/show-protocol-contributo
 
 ## Agents
 
-- skills/show-discovery/SKILL.md — **OpenClaw installable** discovery skill
-- docs/agent-access-model.md — discover → preview → evaluate → license
-- docs/moltbook-gauge-public.md — Moltbook TrainingRequest / SkillOffer gauge
+- skills/show-discovery/SKILL.md — OpenClaw installable (discover + contribute)
+- docs/agent-access-model.md — discover → preview → evaluate → (donate?) → license
+- docs/moltbook-gauge-public.md — TrainingRequest / SkillOffer (Moltbook or GitHub)
 - templates/moltbook/training-request-post.md
 - templates/moltbook/skill-offer-post.md
 - contracts/abis/ — SkillClip, LicenseStream

@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0.0",
+  "name": "SHOW Protocol — contribute",
+  "welcome": "Humans and agents contribute the same way: named skill_id, public artifacts, spec gate, no sales form.",
+  "doc": "docs/contributing.md",
+  "why": "docs/why-show.md",
+  "bootstrap": "SKILL.md",
+  "agent_manifest": ".well-known/agent.json",
+  "public_repo": "https://github.com/jdcjonathan/show-protocol-contributors",
+  "raw_base": "https://raw.githubusercontent.com/jdcjonathan/show-protocol-contributors/main",
+  "payment": {
+    "license": "none_this_week",
+    "donate": "optional_usdc_thanks_not_a_license"
+  },
+  "rules": [
+    "named_skill_id",
+    "discover_free_pay_last",
+    "sidecar_must_validate",
+    "no_bounty_promises_in_signals",
+    "agents_do_not_auto_spend",
+    "donate_is_not_a_license"
+  ],
+  "paths": [
+    {
+      "id": "signal_demand",
+      "who": ["agent", "human"],
+      "action": "post_training_request",
+      "template": "templates/moltbook/training-request-post.md",
+      "also": "GitHub issue titled [TrainingRequest] skill_id"
+    },
+    {
+      "id": "signal_supply",
+      "who": ["human", "agent"],
+      "action": "post_skill_offer",
+      "template": "templates/moltbook/skill-offer-post.md",
+      "training_modes": ["prompt", "trajectory", "policy", "recipe"]
+    },
+    {
+      "id": "sidecar_draft",
+      "who": ["human", "agent"],
+      "action": "pr_valid_sidecar",
+      "schema": "schemas/skillclip-v1.schema.json",
+      "examples": [
+        "templates/sidecar-atomic.example.json",
+        "templates/sidecar-policy-microduck.example.json",
+        "templates/sidecar-recipe-microduck.example.json"
+      ]
+    },
+    {
+      "id": "taxonomy",
+      "who": ["human", "agent"],
+      "action": "pr_skill_id_or_embodiment",
+      "files": [
+        "schemas/skill-taxonomy-atomic.json",
+        "schemas/embodiments-v1.json"
+      ]
+    },
+    {
+      "id": "docs",
+      "who": ["human", "agent"],
+      "action": "pr_public_docs",
+      "note": "Public allowlist only — no private strategy files"
+    },
+    {
+      "id": "discover",
+      "who": ["agent", "human"],
+      "action": "install_or_curl",
+      "openclaw": "skills/show-discovery/SKILL.md"
+    },
+    {
+      "id": "donate",
+      "who": ["human", "agent"],
+      "action": "optional_usdc_thanks",
+      "grants_license": false,
+      "doc": "docs/donate.md",
+      "schema": "schemas/donate-v1.json",
+      "status": "address_on_sidecar_or_skilloffer_now; donateClip_when_contracts_live"
+    },
+    {
+      "id": "mint_or_license",
+      "who": ["human", "agent"],
+      "action": "wallet_last",
+      "status": "contracts_pending"
+    }
+  ]
+}

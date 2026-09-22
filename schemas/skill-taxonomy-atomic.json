@@ -1,6 +1,13 @@
 {
-  "version": "1.1.0",
-  "description": "Atomic-first skill taxonomy for SHOW GTM. Agents: filter skill_level=primitive for launch bounties.",
+  "version": "1.2.0",
+  "description": "Atomic-first skill taxonomy for SHOW GTM. Agents: filter skill_level=primitive for launch bounties; filter embodiment_skills for sim-to-real / policy payloads. Defaults are human video prompt.",
+  "gtm_active_sprint": "gtm-sprint-1",
+  "defaults": {
+    "embodiment": "human.hands.v1",
+    "training_modes": ["prompt"]
+  },
+  "training_modes": "schemas/training-modes-v1.json",
+  "embodiments": "schemas/embodiments-v1.json",
   "gtm_active_sprint": "gtm-sprint-1",
   "skill_levels": {
     "primitive": {
@@ -515,6 +522,81 @@
         "peel.sticker.single.v1",
         "stack.object.on-object.v1"
       ]
+    }
+  ],
+  "embodiment_skills": [
+    {
+      "skill_id": "locomote.walk.forward.v1",
+      "verb": "walk",
+      "skill_level": "primitive",
+      "embodiment": ["pollen.microduck.v1", "generic.biped.v1"],
+      "training_modes": ["policy", "recipe", "trajectory"],
+      "availability_tier": "SUGGESTED",
+      "bounty_usdc": 0,
+      "composes_into": ["micro.desk-biped.patrol.v1"],
+      "notes": "Forward gait. Prefer ONNX + preview video of real or sim."
+    },
+    {
+      "skill_id": "locomote.sit.down.v1",
+      "verb": "sit",
+      "skill_level": "primitive",
+      "embodiment": ["pollen.microduck.v1"],
+      "training_modes": ["policy", "recipe"],
+      "availability_tier": "SUGGESTED",
+      "bounty_usdc": 0,
+      "composes_into": []
+    },
+    {
+      "skill_id": "locomote.crouch.v1",
+      "verb": "crouch",
+      "skill_level": "primitive",
+      "embodiment": ["pollen.microduck.v1"],
+      "training_modes": ["policy", "recipe"],
+      "availability_tier": "SUGGESTED",
+      "bounty_usdc": 0,
+      "composes_into": ["grasp.beak.pick.v1"]
+    },
+    {
+      "skill_id": "recover.fall.get-up.v1",
+      "verb": "recover",
+      "skill_level": "primitive",
+      "embodiment": ["pollen.microduck.v1", "generic.biped.v1"],
+      "training_modes": ["policy", "recipe", "trajectory"],
+      "availability_tier": "SUGGESTED",
+      "bounty_usdc": 0,
+      "composes_into": ["micro.desk-biped.patrol.v1"],
+      "notes": "Failure trajectories are high value. Preview must show a get-up."
+    },
+    {
+      "skill_id": "locomote.skate.roller.v1",
+      "verb": "skate",
+      "skill_level": "primitive",
+      "embodiment": ["pollen.microduck.v1"],
+      "training_modes": ["policy", "recipe"],
+      "availability_tier": "SUGGESTED",
+      "bounty_usdc": 0,
+      "composes_into": []
+    },
+    {
+      "skill_id": "grasp.beak.pick.v1",
+      "verb": "grasp",
+      "skill_level": "primitive",
+      "embodiment": ["pollen.microduck.v1"],
+      "training_modes": ["policy", "trajectory", "prompt"],
+      "availability_tier": "SUGGESTED",
+      "bounty_usdc": 0,
+      "composes_into": ["micro.desk-biped.carry.v1"],
+      "notes": "Beak pick-and-carry. Human RGB prompt still valid as ICL reference."
+    },
+    {
+      "skill_id": "locomote.kick.object.v1",
+      "verb": "kick",
+      "skill_level": "primitive",
+      "embodiment": ["pollen.microduck.v1"],
+      "training_modes": ["policy", "recipe"],
+      "availability_tier": "SUGGESTED",
+      "bounty_usdc": 0,
+      "composes_into": []
     }
   ]
 }

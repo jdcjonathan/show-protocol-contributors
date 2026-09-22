@@ -2,20 +2,16 @@
   "$id": "https://show-protocol.dev/schemas/skillclip-v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "SHOW SkillClip Sidecar v1",
-  "description": "Atomic SkillClip metadata pinned alongside video on Tack/IPFS. Hash committed on-chain before mint.",
+  "description": "SkillClip metadata pinned on Tack/IPFS. Hash committed on-chain before mint. v1.0 = human video prompt. v1.1 adds training_mode, embodiment, and optional contributor.kind (human|agent|joint).",
   "type": "object",
   "required": [
     "type",
     "sidecar_version",
     "skill_id",
     "skill_level",
-    "capture_tier",
-    "duration_sec",
-    "video_cid",
     "content_hash",
     "sidecar_hash",
-    "consent",
-    "capture"
+    "consent"
   ],
   "properties": {
     "type": {
@@ -24,7 +20,44 @@
     },
     "sidecar_version": {
       "type": "string",
-      "pattern": "^1\\.0\\.0$"
+      "pattern": "^1\\.(0|1)\\.0$"
+    },
+    "training_mode": {
+      "type": "string",
+      "enum": ["prompt", "trajectory", "policy", "recipe"],
+      "description": "How the robot consumes this clip. Omitted = prompt (v1.0)."
+    },
+    "embodiment": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(\\.[a-z0-9-]+)*\\.v[0-9]+$",
+      "description": "Body this skill is valid for, e.g. human.hands.v1 or pollen.microduck.v1"
+    },
+    "payload": {
+      "type": "object",
+      "description": "Primary bytes when training_mode is not prompt. Prompt still uses video_cid.",
+      "properties": {
+        "primary_cid": { "type": "string", "minLength": 10 },
+        "format": {
+          "type": "string",
+          "enum": ["mp4", "rlds", "onnx", "safetensors", "mjlab_recipe", "json"]
+        },
+        "control_hz": { "type": "number" },
+        "sim_engine": { "type": "string" },
+        "preview_video_cid": { "type": ["string", "null"] }
+      }
+    },
+    "hub_publish": {
+      "type": "object",
+      "description": "Optional — same artifact also on Hugging Face Hub; SHOW is the license layer",
+      "properties": {
+        "also_on": {
+          "type": "array",
+          "items": { "enum": ["huggingface", "other"] }
+        },
+        "repo_id": { "type": "string", "maxLength": 256 },
+        "creator_certifies_rights": { "type": "boolean", "const": true }
+      },
+      "required": ["creator_certifies_rights"]
     },
     "skill_id": {
       "type": "string",
@@ -63,6 +96,44 @@
       "type": "string",
       "pattern": "^0x[a-fA-F0-9]{40}$"
     },
+    "contributor": {
+      "type": "object",
+      "description": "Who produced this SkillClip. Humans and agents use the same sidecar.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["human", "agent", "joint"],
+          "description": "human = filmer/trainer; agent = bot that produced the payload; joint = human-operated agent"
+        },
+        "id": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "GitHub handle, Moltbook agent name, or other public id"
+        },
+        "operator": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "Human operator if kind is agent or joint"
+        }
+      },
+      "required": ["kind"]
+    },
+    "donate": {
+      "type": "object",
+      "description": "Optional thanks in USDC. Does not grant a license.",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "currency": { "type": "string", "const": "USDC" },
+        "address": {
+          "type": "string",
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "description": "Payee; omit to use creator_address"
+        },
+        "chain_id": { "type": "integer" },
+        "note": { "type": "string", "maxLength": 280 }
+      },
+      "required": ["enabled"]
+    },
     "chain_id": {
       "type": "integer",
       "const": 167013
@@ -80,6 +151,9 @@
         "hotel_room",
         "warehouse",
         "lab_bench",
+        "desk",
+        "classroom",
+        "sim",
         "outdoor",
         "other"
       ]
@@ -175,7 +249,7 @@
       "properties": {
         "also_submitted_to": {
           "type": "array",
-          "items": { "enum": ["figure_index", "luel", "other"] }
+          "items": { "enum": ["figure_index", "luel", "huggingface", "other"] }
         },
         "platform_paid": { "type": "boolean" },
         "show_mint_is": {
@@ -197,11 +271,73 @@
   "allOf": [
     {
       "if": {
-        "properties": { "skill_level": { "const": "primitive" } }
+        "anyOf": [
+          { "properties": { "sidecar_version": { "const": "1.0.0" } } },
+          { "properties": { "training_mode": { "const": "prompt" } } },
+          { "not": { "required": ["training_mode"] } }
+        ]
+      },
+      "then": {
+        "required": ["video_cid", "capture", "duration_sec", "capture_tier"]
+      }
+    },
+    {
+      "if": {
+        "allOf": [
+          { "properties": { "skill_level": { "const": "primitive" } } },
+          {
+            "anyOf": [
+              { "properties": { "training_mode": { "const": "prompt" } } },
+              { "not": { "required": ["training_mode"] } }
+            ]
+          }
+        ]
       },
       "then": {
         "properties": {
           "duration_sec": { "maximum": 20 }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "training_mode": { "const": "policy" } },
+        "required": ["training_mode"]
+      },
+      "then": {
+        "required": ["embodiment", "payload", "capture_tier"],
+        "properties": {
+          "payload": {
+            "required": ["primary_cid", "format"]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "training_mode": { "const": "recipe" } },
+        "required": ["training_mode"]
+      },
+      "then": {
+        "required": ["embodiment", "payload", "capture_tier"],
+        "properties": {
+          "payload": {
+            "required": ["primary_cid", "format"]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "training_mode": { "const": "trajectory" } },
+        "required": ["training_mode"]
+      },
+      "then": {
+        "required": ["embodiment", "payload", "capture_tier"],
+        "properties": {
+          "payload": {
+            "required": ["primary_cid", "format"]
+          }
         }
       }
     }

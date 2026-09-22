@@ -1,23 +1,34 @@
 {
   "schema_version": "1.0",
   "name": "SHOW Protocol",
-  "description": "Atomic human skill clips for robot video-ICL — discover free, license on Taiko Hoodi.",
+  "description": "ASCAP for motor skill. Humans and agents contribute named skills (video, trajectory, policy, recipe). Discover free. Optional USDC donate is thanks, not a license. License on Taiko Hoodi.",
   "url": "https://github.com/jdcjonathan/show-protocol-contributors",
   "bootstrap": "SKILL.md",
+  "why": "docs/why-show.md",
+  "contribute": "docs/contributing.md",
+  "contribute_machine": "schemas/contributing-v1.json",
   "doc_index": "llms.txt",
-  "capabilities": ["discover", "preview", "evaluate", "license"],
+  "capabilities": ["discover", "preview", "evaluate", "contribute", "donate", "license"],
+  "contributors": ["human", "agent"],
   "payment": {
     "currency": "USDC",
     "chain_id": 167013,
-    "network": "taiko-hoodi"
+    "network": "taiko-hoodi",
+    "donate": "optional_usdc_thanks_not_a_license",
+    "this_week": "donate_if_address_listed; license_pending"
   },
   "openclaw_skill": "skills/show-discovery/SKILL.md",
   "openclaw_install": "openclaw skill install https://raw.githubusercontent.com/jdcjonathan/show-protocol-contributors/main/skills/show-discovery/SKILL.md",
   "endpoints": {
+    "contributing": "schemas/contributing-v1.json",
+    "donate": "schemas/donate-v1.json",
     "taxonomy": "schemas/skill-taxonomy-atomic.json",
+    "training_modes": "schemas/training-modes-v1.json",
+    "embodiments": "schemas/embodiments-v1.json",
     "opportunity_feed": "schemas/opportunity-feed-v1.json",
     "use_cases": "schemas/use-cases-v1.json",
     "catalog": "catalog/sprint-1/index.json",
+    "sidecar_schema": "schemas/skillclip-v1.schema.json",
     "deployments": "deployments/hoodi.json"
   },
   "moltbook": {

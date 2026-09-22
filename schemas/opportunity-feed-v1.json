@@ -1,7 +1,7 @@
 {
   "$schema": "https://show-protocol.dev/schemas/opportunity-feed-v1.schema.json",
-  "version": "1.0.0",
-  "updated_at": "2026-08-30",
+  "version": "1.1.0",
+  "updated_at": "2026-09-07",
   "chain_id": 167013,
   "currency": "USDC",
   "feed_policy": {
@@ -225,6 +225,57 @@
       "example_cid": null,
       "landing_path": "/bounty/grasp.object.power.v1?variant=bottle",
       "cta": "Film anyway"
+    },
+    {
+      "id": "opp-microduck-getup-suggested-001",
+      "skill_id": "recover.fall.get-up.v1",
+      "title": "Microduck get-up policy",
+      "availability_tier": "SUGGESTED",
+      "bounty_usdc": null,
+      "duration_sec": null,
+      "slots_total": null,
+      "slots_remaining": null,
+      "capture_tier": "C",
+      "training_mode": "policy",
+      "embodiment": "pollen.microduck.v1",
+      "brief": "Train or fork a fall-recovery policy. Preview video of the real or sim get-up. No bounty yet — post a TrainingRequest if you need this.",
+      "example_cid": null,
+      "landing_path": "/bounty/recover.fall.get-up.v1",
+      "cta": "Offer a policy"
+    },
+    {
+      "id": "opp-microduck-walk-suggested-001",
+      "skill_id": "locomote.walk.forward.v1",
+      "title": "Microduck walk recipe",
+      "availability_tier": "SUGGESTED",
+      "bounty_usdc": null,
+      "duration_sec": null,
+      "slots_total": null,
+      "slots_remaining": null,
+      "capture_tier": "C",
+      "training_mode": "recipe",
+      "embodiment": "pollen.microduck.v1",
+      "brief": "Share a sim-to-real walk recipe (reward + DR). Dual-publish to Hugging Face; mint rights here when Hoodi is live.",
+      "example_cid": null,
+      "landing_path": "/bounty/locomote.walk.forward.v1",
+      "cta": "Offer a recipe"
+    },
+    {
+      "id": "opp-microduck-beak-suggested-001",
+      "skill_id": "grasp.beak.pick.v1",
+      "title": "Beak pick (policy or human prompt)",
+      "availability_tier": "SUGGESTED",
+      "bounty_usdc": null,
+      "duration_sec": [5, 20],
+      "slots_total": null,
+      "slots_remaining": null,
+      "capture_tier": "C",
+      "training_mode": "policy",
+      "embodiment": "pollen.microduck.v1",
+      "brief": "Pick with the beak. Policy, onboard trajectory, or a human RGB prompt as ICL reference.",
+      "example_cid": null,
+      "landing_path": "/bounty/grasp.beak.pick.v1",
+      "cta": "Offer a skill"
     }
   ]
 }

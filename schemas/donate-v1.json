@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "name": "SHOW Protocol — donate",
+  "doc": "docs/donate.md",
+  "rule": "Donate is optional thanks in USDC. It does not grant a license or unlock full bytes.",
+  "currency": "USDC",
+  "contracts_status": "pending",
+  "on_chain": {
+    "when_live": "LicenseStream.donateClip(tokenId, amount)",
+    "split": "100% creator",
+    "grants_license": false
+  },
+  "off_chain_this_week": {
+    "how": "USDC transfer to sidecar donate.address or SkillOffer donate_usdc",
+    "if_missing": "do_not_send"
+  },
+  "agent_rules": [
+    "never_auto_donate",
+    "operator_approval_required",
+    "preview_stays_free"
+  ],
+  "sidecar_field": "donate",
+  "on_chain_call": "donateClip(uint256,uint256)"
+}

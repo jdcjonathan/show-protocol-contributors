@@ -1,10 +1,10 @@
 # Agent & developer access model
 
-**Version 0.1 · August 2026**
+**Version 0.2 · September 2026**
 
 **Principle:** Generate value first. Ask for money last.
 
-Related: [artifact-plan.md](artifact-plan.md) · [architecture.md](architecture.md) · [competitive/luel-buyer-access.md](competitive/luel-buyer-access.md)
+Related: [why-show.md](why-show.md) · [contributing.md](contributing.md) · [discovery.md](discovery.md) · [participation.md](participation.md)
 
 ---
 
@@ -12,15 +12,15 @@ Related: [artifact-plan.md](artifact-plan.md) · [architecture.md](architecture.
 
 Closed data marketplaces (Luel **Request a dataset**, custom collection scoping, sales follow-up) optimize for **enterprise procurement**, not **robot developer velocity** or **autonomous agent commerce**.
 
-SHOW is an open protocol: robotic developers and agents should reach **useful information in seconds**, with payment only when they need **full rights + full bytes** for production.
+SHOW is an open protocol: **humans and agents** should reach **useful information in seconds**, contribute named skills without a sales form, and pay only when they need **full rights + full bytes** for production.
 
 ---
 
 ## Access ladder (always in this order)
 
 ```
-DISCOVER → PREVIEW → EVALUATE → LICENSE → DEPLOY
-   free      free      free        pay       pay
+DISCOVER → PREVIEW → EVALUATE → (donate?) → LICENSE → DEPLOY
+   free      free      free        optional      pay       pay
 ```
 
 | Stage | What the agent gets | Auth | Payment |
@@ -28,6 +28,7 @@ DISCOVER → PREVIEW → EVALUATE → LICENSE → DEPLOY
 | **DISCOVER** | Taxonomy JSON, opportunity feed, catalog index, scores, sidecar metadata, `SKILL.md` | None | Free |
 | **PREVIEW** | Gold example clips, low-res or watermarked bytes, 3 s trim, sidecar fields | None | Free |
 | **EVALUATE** | Compare clips by `skill_id`, score, duration, environment_class; stack micro-primitives | None | Free |
+| **DONATE** | Nothing extra — thanks to the producer | Wallet | Optional USDC; **not a license** |
 | **LICENSE** | Full-resolution bytes, commercial use flag, on-chain license receipt | Wallet | USDC / x402 |
 | **DEPLOY** | TaskEscrow attach, lineage registration, residual routing | Wallet | Job GMV |
 
@@ -37,7 +38,7 @@ DISCOVER → PREVIEW → EVALUATE → LICENSE → DEPLOY
 
 ## What is always public (Phase 0+)
 
-Ship in repo and pin on Tack — no login. **Published via [public surface](public-surface.md)** (not this private repo):
+Ship in the **public** repo and pin on Tack — no login:
 
 | Asset | Path / surface | Agent use |
 | --- | --- | --- |
@@ -46,7 +47,7 @@ Ship in repo and pin on Tack — no login. **Published via [public surface](publ
 | Sidecar schema | `schemas/skillclip-v1.schema.json` (P0) | Validate before license |
 | Catalog index | `catalog/sprint-1/index.json` (P0) | List minted clips |
 | Eval scores | On-chain events + JSON mirror | Shop by lift |
-| Bootstrap | `SKILL.md`, `llms.txt` | One-shot agent onboarding |
+| Bootstrap | `SKILL.md`, `llms.txt`, `docs/contributing.md`, `schemas/contributing-v1.json` | Join + shop |
 | Example clips | Tack CIDs linked from catalog | Prompt engineering |
 | Contract ABIs | `contracts/abis/` | License script |
 
@@ -57,6 +58,7 @@ Ship in repo and pin on Tack — no login. **Published via [public surface](publ
 | Asset | Gate | Why pay exists |
 | --- | --- | --- |
 | Full-resolution clip bytes | x402 or `LicenseStream` USDC pull | Creator + protocol economics |
+| Optional thanks | `donateClip` or sidecar `donate.address` | Gratitude — **no rights** |
 | Commercial redistribution | License tier flag | Rights scope |
 | Private modalities (depth, IMU) | Separate x402 quote | Capture cost premium |
 | TaskEscrow settlement | Job GMV | Operator + lineage residuals |
@@ -99,6 +101,7 @@ HTTP + MCP tools — **read tools unauthenticated**, **write tools wallet-signed
 | `get_clip_metadata(token_id)` | None | Free |
 | `get_preview_bytes(token_id)` | None | Free |
 | `get_sidecar(token_id)` | None | Free |
+| `donate_clip(token_id, amount)` | Wallet | Optional USDC; not a license |
 | `license_clip(token_id)` | Wallet | USDC |
 | `get_full_bytes(token_id, license_proof)` | Bearer / tx proof | Included in license |
 | `post_bounty(skill_id)` | Wallet | Escrow deposit |
@@ -147,3 +150,5 @@ SHOW still supports **bulk license** (agent licenses 50 atomics in one session) 
 | Date | Notes |
 | --- | --- |
 | 2026-08-30 | Value-first access ladder; counter to Luel request-a-dataset flow |
+| 2026-09-22 | Contributors = humans **and** agents; `contributing-v1.json` |
+| 2026-09-22 | Optional **donate** (USDC thanks) ≠ license |

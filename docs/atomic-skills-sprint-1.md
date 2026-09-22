@@ -1,12 +1,14 @@
 # Atomic skills — Sprint 1 cheat sheet
 
-Film **one move**. **10 seconds**. **$8–15**. Phone on chest or top-down.
+Film **one move**. **~10 seconds**. Phone on chest or top-down. Or offer a **policy** on a named embodiment.
 
-Full GTM cycle: [gtm-atomic-launch.md](gtm-atomic-launch.md) · JSON: [skill-taxonomy-atomic.json](../schemas/skill-taxonomy-atomic.json) · **Browse feed:** [opportunity-feed-v1.json](../schemas/opportunity-feed-v1.json)
+**Join:** [contributing.md](contributing.md) · **Why:** [why-show.md](why-show.md) · JSON: [skill-taxonomy-atomic.json](../schemas/skill-taxonomy-atomic.json) · **Browse feed:** [opportunity-feed-v1.json](../schemas/opportunity-feed-v1.json)
 
-## Sprint 1 bounties (live now — target 50 clips in 7 days)
+**Bounties are not an open campaign this week.** These are the `skill_id`s we want **named** (offer or request). Indicative $ is what a later match might pay.
 
-| skill_id | You film | Seconds | $ |
+## Sprint 1 skills (name these)
+
+| skill_id | You film | Seconds | Indicative $ |
 | --- | --- | --- | --- |
 | `reach.object.above-surface.v1` | Move hand over object, pause above | 5–10 | 8 |
 | `grasp.object.power.v1` | Full-hand grab a cup | 5–12 | 10 |

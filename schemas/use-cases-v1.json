@@ -1,7 +1,7 @@
 {
-  "version": "1.0.0",
-  "description": "Robot/agent use cases that drive discovery — what human content types create economic value now",
-  "updated_at": "2026-08-30",
+  "version": "1.1.0",
+  "description": "Robot/agent use cases that drive discovery — human video atomics and embodiment-specific sim-to-real skills",
+  "updated_at": "2026-09-07",
   "use_cases": [
     {
       "use_case_id": "hospitality.breakfast.pour",
@@ -65,6 +65,43 @@
       "value_driver": "ood_generalization",
       "atomic_stack": ["grasp.object.power.v1", "jar.twist.open.v1"],
       "discovery_hook": "Scarce skill — high discovery excitement when clips exist"
+    },
+    {
+      "use_case_id": "desk.biped.locomotion",
+      "title": "Desk biped walk and skate",
+      "vertical": "open_rl_hobby",
+      "embodiment": "pollen.microduck.v1",
+      "training_modes": ["policy", "recipe"],
+      "deployment_signal": "Microduck-class $399 walkers; classroom and hobby sim-to-real",
+      "value_driver": "shareable_onboard_policy",
+      "atomic_stack": [
+        "locomote.walk.forward.v1",
+        "locomote.skate.roller.v1"
+      ],
+      "discovery_hook": "License a gait instead of retraining from scratch — Hub to reproduce, SHOW to own"
+    },
+    {
+      "use_case_id": "desk.biped.recovery",
+      "title": "Fall recovery on a small biped",
+      "vertical": "open_rl_hobby",
+      "embodiment": "pollen.microduck.v1",
+      "training_modes": ["policy", "trajectory", "recipe"],
+      "deployment_signal": "Self-recovery is the unlock for unsupervised desk experiments",
+      "value_driver": "reset_without_human",
+      "atomic_stack": ["recover.fall.get-up.v1"],
+      "discovery_hook": "Best get-up policy on carpet vs hardwood — treasure hunt for RL trainers"
+    },
+    {
+      "use_case_id": "desk.biped.grasp-carry",
+      "title": "Beak pick and carry",
+      "vertical": "open_rl_hobby",
+      "embodiment": "pollen.microduck.v1",
+      "training_modes": ["policy", "trajectory", "prompt"],
+      "deployment_signal": "Whole-body crouch + beak close + walk with object",
+      "value_driver": "mobile_manipulation_toy_scale",
+      "atomic_stack": ["locomote.crouch.v1", "grasp.beak.pick.v1", "locomote.walk.forward.v1"],
+      "composite_target": "micro.desk-biped.carry.v1",
+      "discovery_hook": "Same loop as kitchen grasp — different body, same license"
     }
   ]
 }

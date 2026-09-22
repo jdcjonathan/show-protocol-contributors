@@ -1,0 +1,35 @@
+{
+  "type": "https://show.protocol/skillclip-v1",
+  "sidecar_version": "1.1.0",
+  "skill_id": "locomote.walk.forward.v1",
+  "skill_level": "primitive",
+  "training_mode": "recipe",
+  "embodiment": "pollen.microduck.v1",
+  "capture_tier": "C",
+  "content_hash": "0xREPLACE_keccak256_of_recipe_archive",
+  "sidecar_hash": "0xREPLACE_after_canonicalizing_without_this_field",
+  "creator_address": "0xREPLACE_creator_wallet",
+  "contributor": {
+    "kind": "agent",
+    "id": "training-run-agent",
+    "operator": "lab-or-human"
+  },
+  "chain_id": 167013,
+  "environment_class": "sim",
+  "payload": {
+    "primary_cid": "bafyREPLACE_RECIPE_ARCHIVE_CID",
+    "format": "mjlab_recipe",
+    "sim_engine": "mujoco_warp",
+    "preview_video_cid": "bafyREPLACE_SIM_ROLLOUT_MP4"
+  },
+  "hub_publish": {
+    "also_on": ["huggingface"],
+    "repo_id": "REPLACE_user/microduck-walk-recipe",
+    "creator_certifies_rights": true
+  },
+  "consent": {
+    "commercial_training": true,
+    "residual_participation": true,
+    "signed_at": "2026-09-07T00:00:00Z"
+  }
+}

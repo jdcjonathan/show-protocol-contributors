@@ -2,7 +2,7 @@
 
 **Version 0.1 · August 2026**
 
-Related: [luel-onboarding.md](competitive/luel-onboarding.md) · [atomic-skills-sprint-1.md](atomic-skills-sprint-1.md) · [mission-and-queue.md](mission-and-queue.md)
+Related: [atomic-skills-sprint-1.md](atomic-skills-sprint-1.md) · [participation.md](participation.md) · [why-show.md](why-show.md)
 
 ---
 
@@ -14,7 +14,7 @@ Contributors complete a 3-step profile and wait for approval, then land on an em
 
 **SHOW rule:** the opportunity feed is **never empty**. Creators should always see something they can film **today**, with or without funded escrow.
 
-**Treasure hunt:** each card is a **branch prompt** — try a variant, explore a sparse niche, maybe robots breed your clip later. Not a shift assignment. → [participation-picbreeder.md](participation-picbreeder.md)
+**Treasure hunt:** each card is a **branch prompt** — try a variant, explore a sparse niche, maybe robots breed your clip later. Not a shift assignment. → [participation.md](participation.md)
 
 ---
 
@@ -106,7 +106,7 @@ Upload gate is **automated spec only**: duration, resolution, hands visible, one
 Priority order to generate SUGGESTED cards:
 
 1. **Sprint 1 atomics** not yet in LIVE — rotate OPEN  
-2. **Sprint 2 preview** from [gtm-atomic-launch.md](gtm-atomic-launch.md)  
+2. **Sprint 2 preview** from [atomic-skills-sprint-1.md](atomic-skills-sprint-1.md)  
 3. **Variant prompts** — same skill_id, different object (“grasp with mug / bottle / box”)  
 4. **Environment variants** — “same grasp, different lighting” (Tier B seed)  
 5. **Composite teasers** — “film `grasp` now; robots stack into pour-over later”  

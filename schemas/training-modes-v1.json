@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "description": "How a SkillClip is consumed. Agents filter training_mode + embodiment. Default is prompt (human RGB ICL).",
+  "updated_at": "2026-09-07",
+  "access_ladder": ["discover", "preview", "evaluate", "license", "deploy"],
+  "defaults": {
+    "training_mode": "prompt",
+    "embodiment": "human.hands.v1"
+  },
+  "modes": [
+    {
+      "id": "prompt",
+      "title": "Video prompt",
+      "payload": "RGB SkillClip (atomic 5–20 s or Tier A long-horizon)",
+      "producer": "human_creator",
+      "consumer": "video_icl",
+      "sidecar_required": ["video_cid", "capture"],
+      "preview": "trim or full clip CID",
+      "example_skill_ids": ["grasp.object.power.v1", "pour.liquid.thin-stream.v1"]
+    },
+    {
+      "id": "trajectory",
+      "title": "Episode / teleop log",
+      "payload": "RLDS or equivalent: observations, actions, rewards, dones",
+      "producer": "teleop_operator_or_onboard_logger",
+      "consumer": "imitation_offline_rl_eval",
+      "sidecar_required": ["payload.primary_cid", "embodiment"],
+      "preview": "optional mp4 of the episode",
+      "example_skill_ids": ["recover.fall.get-up.v1", "grasp.beak.pick.v1"]
+    },
+    {
+      "id": "policy",
+      "title": "Runnable policy",
+      "payload": "ONNX or safetensors exported for a named embodiment",
+      "producer": "rl_trainer_or_finetuner",
+      "consumer": "onboard_runtime",
+      "sidecar_required": ["payload.primary_cid", "payload.format", "embodiment"],
+      "preview": "short real or sim video of the policy running",
+      "example_skill_ids": ["locomote.walk.forward.v1", "recover.fall.get-up.v1"]
+    },
+    {
+      "id": "recipe",
+      "title": "Sim-to-real recipe",
+      "payload": "Env, reward, domain randomization, actuator model refs — enough to retrain",
+      "producer": "rl_researcher_or_classroom",
+      "consumer": "retrain_fork",
+      "sidecar_required": ["payload.primary_cid", "embodiment"],
+      "preview": "readme + sim rollout clip",
+      "example_skill_ids": ["locomote.walk.forward.v1", "locomote.skate.roller.v1"]
+    }
+  ],
+  "not_in_scope": [
+    "hosting an RL trainer",
+    "replacing Hugging Face Hub",
+    "open-sourcing third-party hardware CAD"
+  ]
+}

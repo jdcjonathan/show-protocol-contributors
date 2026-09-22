@@ -1,0 +1,40 @@
+{
+  "type": "https://show.protocol/skillclip-v1",
+  "sidecar_version": "1.1.0",
+  "skill_id": "recover.fall.get-up.v1",
+  "skill_level": "primitive",
+  "training_mode": "policy",
+  "embodiment": "pollen.microduck.v1",
+  "capture_tier": "C",
+  "content_hash": "0xREPLACE_keccak256_of_onnx_bytes",
+  "sidecar_hash": "0xREPLACE_after_canonicalizing_without_this_field",
+  "creator_address": "0xREPLACE_creator_wallet",
+  "contributor": {
+    "kind": "joint",
+    "id": "trainer-or-agent-name",
+    "operator": "human-operator-if-agent"
+  },
+  "chain_id": 167013,
+  "environment_class": "desk",
+  "payload": {
+    "primary_cid": "bafyREPLACE_ONNX_OR_WEIGHTS_CID",
+    "format": "onnx",
+    "control_hz": 50,
+    "preview_video_cid": "bafyREPLACE_OPTIONAL_MP4_OF_REAL_OR_SIM"
+  },
+  "hub_publish": {
+    "also_on": ["huggingface"],
+    "repo_id": "REPLACE_user/microduck-getup-v1",
+    "creator_certifies_rights": true
+  },
+  "consent": {
+    "commercial_training": true,
+    "residual_participation": true,
+    "signed_at": "2026-09-07T00:00:00Z"
+  },
+  "lineage": {
+    "parent_token_id": null,
+    "variant_tags": ["get_up", "backlash_dr", "desk_carpet"],
+    "discovery_note": "Fork of stock get-up; trained with extra carpet friction DR"
+  }
+}

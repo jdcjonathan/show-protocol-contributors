@@ -1,0 +1,45 @@
+{
+  "version": "1.0.0",
+  "description": "Bodies a SkillClip is valid for. Agents must match embodiment before license.",
+  "updated_at": "2026-09-07",
+  "embodiments": [
+    {
+      "id": "human.hands.v1",
+      "title": "Human hands (phone / chest / wrist cam)",
+      "kind": "human",
+      "default_training_modes": ["prompt"],
+      "notes": "Sprint 1 kitchen atomics. Not a robot log."
+    },
+    {
+      "id": "pollen.microduck.v1",
+      "title": "Pollen Robotics Microduck",
+      "kind": "biped_desktop",
+      "vendor": "Pollen Robotics (Hugging Face)",
+      "height_cm": 25,
+      "mass_g": 800,
+      "dof": 15,
+      "default_training_modes": ["policy", "recipe", "trajectory"],
+      "runtime": "ONNX on-device; train in mjlab / microduck_rl",
+      "docs": "https://pollen-robotics.com/microduck/",
+      "software_license": "Apache-2.0",
+      "hardware_open": false,
+      "notes": "Walk, sit, crouch, get-up, skate, beak grasp. Software open; mechanical CAD is not."
+    },
+    {
+      "id": "pollen.reachy-mini.v1",
+      "title": "Pollen Robotics Reachy Mini",
+      "kind": "desktop_interaction",
+      "vendor": "Pollen Robotics (Hugging Face)",
+      "default_training_modes": ["policy", "trajectory"],
+      "docs": "https://www.pollen-robotics.com/",
+      "notes": "Interaction-first; not the locomotion wedge."
+    },
+    {
+      "id": "generic.biped.v1",
+      "title": "Small generic biped",
+      "kind": "biped_desktop",
+      "default_training_modes": ["policy", "recipe"],
+      "notes": "Use when the producer attests portability; prefer a vendor id when known."
+    }
+  ]
+}

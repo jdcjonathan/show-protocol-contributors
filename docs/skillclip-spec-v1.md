@@ -1,8 +1,12 @@
 # SkillClip capture spec v1 (draft)
 
-SkillClips are the unit of value in SHOW. They are **not** social video. They are continuous demonstrations that in-context robot models (e.g. Skild S1-class) can use as prompts.
+SkillClips are the unit of **rights** in SHOW. They are not social video. The payload can be a continuous demonstration for in-context models (S1-class), a **robot trajectory**, a **runnable policy**, or a **sim-to-real recipe**.
 
-Creators who cannot hit spec do not mint.
+**Humans and agents mint the same object.** Optional sidecar field `contributor.kind`: `human` | `agent` | `joint`. Optional `donate` object: thanks in USDC, not a license.
+
+Creators (of any kind) who cannot hit the spec for their **training_mode** do not mint.
+
+**Join:** [contributing.md](contributing.md) · **Training modes:** [training-modes.md](training-modes.md) · [training-modes-v1.json](../schemas/training-modes-v1.json) · [embodiments-v1.json](../schemas/embodiments-v1.json)
 
 **See also:** [creator-funnel.md](creator-funnel.md) (use cases, camera angles, Tier A/B/C) · [schemas/skill-taxonomy.json](../schemas/skill-taxonomy.json)
 
@@ -12,9 +16,9 @@ Creators who cannot hit spec do not mint.
 | --- | --- | --- | --- |
 | **A** | PromptClip | Baristas, housekeeping, cooks | Continuous RGB, 1080p+, one primary camera angle |
 | **B** | TrainClip | Distributed creators, campaigns | Tier A + egocentric primary + phases + 5+ variants |
-| **C** | Robot-native | Teleop operators | Not creator funnel — poses, force, RLDS |
+| **C** | Robot-native | Teleop ops, RL trainers, onboard logs | Trajectories, policies, recipes — not phone-only |
 
-Most bounties launch at **Tier A**. Tier B pays more for diversity bundles.
+Most bounties launch at **Tier A**. Tier B pays more for diversity bundles. Tier C is how **sim-to-real** skills (e.g. Microduck walk / get-up) mint — see [training-modes.md](training-modes.md).
 
 ## Video requirements (Tier A minimum)
 
@@ -30,7 +34,11 @@ Most bounties launch at **Tier A**. Tier B pays more for diversity bundles.
 
 ## Sidecar JSON (required)
 
-Pinned alongside video on Tack. Hash committed on-chain before mint.
+Pinned alongside the **primary payload** on Tack. Hash committed on-chain before mint.
+
+v1.0 (prompt) uses `video_cid`. v1.1 adds `training_mode` + `embodiment`; policy / recipe / trajectory use `payload.primary_cid`.
+
+Prompt example:
 
 ```json
 {
@@ -53,33 +61,32 @@ Pinned alongside video on Tack. Hash committed on-chain before mint.
 }
 ```
 
+Policy / recipe examples: [sidecar-policy-microduck.example.json](../templates/sidecar-policy-microduck.example.json) · [sidecar-recipe-microduck.example.json](../templates/sidecar-recipe-microduck.example.json)
+
+Optional thanks field: `"donate": { "enabled": true, "currency": "USDC" }` — [donate.md](donate.md). Does not grant commercial rights.
+
 ## Proof of capture
 
-1. **C2PA** credentials from SHOW capture app (device, timestamp, app signing key)
+1. **C2PA** (prompt) or **training-run attestation** (policy/recipe: seed, commit, sim hash) plus SHOW app or signed sidecar
 2. **ERC-8004** creator identity bound at mint
-3. **On-chain hash** of video + sidecar committed before Tack pin completes
-4. Scraped or re-uploaded content **fails** attestation
+3. **On-chain hash** of primary payload + sidecar committed before Tack pin completes
+4. Scraped or re-uploaded third-party weights **fail** unless `hub_publish.creator_certifies_rights` and the bytes are the minter's run
 
 ## Mint gate
 
 Mint succeeds only when:
 
-- [ ] Video passes automated spec checks (duration, cuts, hands-in-frame)
-- [ ] Sidecar validates against JSON schema
-- [ ] C2PA chain verifies
+- [ ] Sidecar validates against JSON schema for its `training_mode`
+- [ ] Prompt: video passes spec (duration, cuts, hands-in-frame)
+- [ ] Policy/recipe/trajectory: `embodiment` set; `payload.primary_cid` + format; preview video recommended
 - [ ] Creator has registered ERC-8004 identity
 - [ ] Content hash registered on Taiko
 
 ## Skill taxonomy (initial wedge)
 
-Aligned with S1 unseen-task demos:
+Human video (Sprint 1): atomic primitives in [skill-taxonomy-atomic.json](../schemas/skill-taxonomy-atomic.json).
 
-- `pour-over.coffee`
-- `pancake.flip`
-- `plant.pot`
-- `kit.assembly`
-
-Expand only after eval pipeline proves attribution for one family.
+Sim-to-real (SUGGESTED): `embodiment_skills` — walk, get-up, skate, beak pick on `pollen.microduck.v1`. No bounties until demand shows up.
 
 ## Rejection reasons (non-exhaustive)
 
